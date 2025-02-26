@@ -1,0 +1,18 @@
+name: Github Release
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: linux-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+
+      - name: Run release script
+        run: |
+          cargo run -p releaser -- github-release
