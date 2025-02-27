@@ -4,6 +4,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       id-token: write
       contents: write
@@ -17,7 +19,5 @@ jobs:
           toolchain: stable
 
       - name: Run release script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cargo run -p releaser -- github-release
