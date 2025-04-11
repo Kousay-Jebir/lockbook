@@ -179,7 +179,7 @@ fn merge_to_master(version: &str) {
         .args([
             "-c",
             &format!(
-                "git checkout master && git pull origin master && git merge bump-{} && git push origin master",
+                "git fetch origin && git checkout master && git pull origin master && git merge bump-{} && git push origin master",
                 version
             ),
         ])
